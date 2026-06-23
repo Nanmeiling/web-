@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="description" content="Thai Real Estate - บริการขายฝาก ให้เช่า ตกแต่ง และซื้อขายอสังหาริมทรัพย์ในเชียงใหม่">
+    <meta name="keywords" content="ขายฝาก, บ้านเช่า, ตกแต่งบ้าน, อสังหาริมทรัพย์เชียงใหม่, ที่ดิน, คอนโด">
+    <title>Thai Real Estate - บริการขายฝาก ให้เช่า ตกแต่งบ้าน</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --primary-dark: #1a3a52;
+            --primary: #2c5aa0;
+            --accent: #d4af37;
+            --background: #f5f7fa;
+            --text-dark: #2c3e50;
+            --text-light: #555555;
+            --white: #ffffff;
+            --border: #e9ecef;
+            --success: #27ae60;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--background);
+            color: var(--text-dark);
+            overflow: hidden;
+        }
+
+        .app-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding-top: max(0px, env(safe-area-inset-top));
+            padding-bottom: max(60px, env(safe-area-inset-bottom));
+        }
+
+        /* HEADER */
+        .mobile-header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: var(--white);
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            flex-shrink: 0;
+        }
+
+        .logo-mobile {
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-toggle-mobile {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: var(--white);
+            padding: 6px 10px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 0.8em;
+            cursor: pointer;
+        }
+
+        .lang-toggle-mobile.active {
+            background: var(--accent);
+            color: var(--primary-dark);
+        }
+
+        /* MAIN CONTENT */
+        .content-area {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 10px;
+        }
+
+        .page {
+            display: none;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* PAGE HEADER */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: var(--white);
+            padding: 20px 16px;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .page-subtitle {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        /* CONSIGNMENT PAGE */
+        .consignment-container {
+            padding: 16px;
+        }
+
+        .info-section {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-content {
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        .list-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            padding: 10px;
+            background: var(--background);
+            border-radius: 6px;
+        }
+
+        .list-icon {
+            font-size: 1.3em;
+            flex-shrink: 0;
+        }
+
+        .list-text {
+            flex: 1;
+        }
+
+        .list-text-title {
+            font-weight: bold;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .list-text-desc {
+            color: var(--text-light);
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 10px;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+            font-size: 0.85em;
+        }
+
+        .comparison-table th {
+            background: var(--primary);
+            color: var(--white);
+            font-weight: bold;
+        }
+
+        .comparison-table td {
+            background: var(--background);
+        }
+
+        .check-mark {
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .cross-mark {
+            color: #e74c3c;
+        }
+
+        /* CONTACT PAGE */
+        .contact-container {
+            padding: 16px;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: var(--white);
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-icon {
+            font-size: 1.5em;
+        }
+
+        .contact-text {
+            flex: 1;
+        }
+
+        .contact-label {
+            font-size: 0.85em;
+            opacity: 0.9;
+            margin-bottom: 4px;
+        }
+
+        .contact-value {
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        /* FORM */
+        .form-group {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .form-label {
+            display: block;
+            color: var(--text-dark);
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            font-size: 16px;
+            color: var(--text-dark);
+            font-family: inherit;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 5px rgba(44, 90, 160, 0.3);
+        }
+
+        .btn-submit {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.05em;
+            width: calc(100% - 32px);
+            margin: 16px;
+            cursor: pointer;
+        }
+
+        .btn-submit:active {
+            background: var(--primary-dark);
+            transform: scale(0.98);
+        }
+
+        /* ABOUT PAGE */
+        .about-container {
+            padding: 16px;
+        }
+
+        .about-section {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .about-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .about-text {
+            color: var(--text-light);
+            line-height: 1.7;
+            font-size: 0.95em;
+            margin-bottom: 12px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: var(--white);
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 0.8em;
+            opacity: 0.9;
+        }
+
+        .values-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .value-item {
+            display: flex;
+            gap: 8px;
+            padding: 8px;
+            background: var(--background);
+            border-radius: 6px;
+        }
+
+        .value-icon {
+            font-size: 1.2em;
+        }
+
+        .value-text {
+            color: var(--text-dark);
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+
+        /* BOTTOM NAVIGATION */
+        .bottom-nav {
+            background: var(--white);
+            border-top: 2px solid var(--border);
+            display: flex;
+            justify-content: space-around;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding-bottom: max(8px, env(safe-area-inset-bottom));
+            padding-top: 8px;
+            z-index: 200;
+            overflow-x: auto;
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 8px;
+            cursor: pointer;
+            color: var(--text-light);
+            border: none;
+            background: none;
+            font-size: 0.7em;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+            border-top: 3px solid var(--accent);
+            margin-top: -8px;
+            padding-top: 5px;
+        }
+
+        .nav-icon {
+            font-size: 1.5em;
+        }
+
+        /* LANGUAGE */
+        .lang-en { display: none; }
+        .lang-th { display: inline; }
+        .lang-en.active { display: inline; }
+        .lang-th.active { display: none; }
+
+        /* PADDING */
+        .content-area {
+            padding-bottom: 60px;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 12px;
+            border-left: 4px solid var(--accent);
+            border-radius: 4px;
+            margin: 12px 0;
+        }
+
+        .highlight-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .highlight-text {
+            color: var(--text-dark);
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- HEADER -->
+        <div class="mobile-header">
+            <div class="logo-mobile">🏠 Thai Real Estate</div>
+            <div class="header-right">
+                <button class="lang-toggle-mobile active" onclick="setLanguage('th')">ไทย</button>
+                <button class="lang-toggle-mobile" onclick="setLanguage('en')">EN</button>
+            </div>
+        </div>
+
+        <!-- CONTENT AREA -->
+        <div class="content-area">
+
+            <!-- ===== PAGE 1: CONSIGNMENT SALES ===== -->
+            <div class="page active" id="page-consignment">
+                <div class="page-header">
+                    <h1 class="page-title">
+                        <span class="lang-th">💰 บริการขายฝาก</span>
+                        <span class="lang-en">💰 Consignment Sales</span>
+                    </h1>
+                    <p class="page-subtitle">
+                        <span class="lang-th">ฝากบ้านได้เงินทุกเดือน</span>
+                        <span class="lang-en">Deposit Property, Earn Monthly Returns</span>
+                    </p>
+                </div>
+
+                <div class="consignment-container">
+                    <!-- WHAT IS CONSIGNMENT -->
+                    <div class="info-section">
+                        <h2 class="section-title">
+                            <span class="lang-th">❓ บริการขายฝากคืออะไร</span>
+                            <span class="lang-en">❓ What is Consignment?</span>
+                        </h2>
+                        <div class="section-content">
+                            <span class="lang-th">
+                                บริการขายฝากเป็นวิธีที่ปลอดภัยและประหยัดค่าใช้จ่าย 
+                                ในการทำให้บ้านของคุณสร้างรายได้ 
+                                คุณเอาบ้าน ที่ดิน หรือคอนโดมาฝากกับเรา 
+                                เราจะหาผู้ซื้อที่เหมาะสม 
+                                ผู้ซื้อจะซื้อและจ่ายดอกเบี้ยให้คุณทุกเดือน 
+                                คุณได้เงินทุกเดือนโดยไม่ต้องทำอะไร
+                            </span>
+                            <span class="lang-en">
+                                Consignment sales is a safe and cost-effective way 
+                                to make your property generate income. 
+                                You deposit your house, land, or condo with us. 
+                                We find a suitable buyer. 
+                                The buyer pays monthly interest to you. 
+                                You earn money every month without any effort.
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- HOW IT WORKS -->
+                    <div class="info-section">
+                        <h2 class="section-title">
+                            <span class="lang-th">📋 ขั้นตอนการทำงาน</span>
+                            <span class="lang-en">📋 How It Works</span>
+                        </h2>
+
+                        <div class="list-item">
+                            <div class="list-icon">1️⃣</div>
+                            <div class="list-text">
+                                <div class="list-text-title"><span class="lang-th">คุณมาติดต่อเรา</span></div>
+                                <div class="list-text-desc"><span class="lang-th">ส่งรูปและข้อมูลบ้านของคุณ</span></div>
+                            </div>
+                        </div>
+
+                        <div class="list-item">
+                            <div class="list-icon">2️⃣</div>
+                            <div class="list-text">
+                                <div class="list-text-title"><span class="lang-th">เราประเมินมูลค่า</span></div>
+                                <div class="list-text-desc"><span class="lang-th">เยี่ยมชมบ้านและกำหนดราคา</span></div>
+                            </div>
+                        </div>
+
+                        <div class="list-item">
+                            <div class="list-icon">3️⃣</div>
+                            <div class="list-text">
+                                <div class="list-text-title"><span class="lang-th">ลงสัญญา</span></div>
+                                <div class="list-text-desc"><span class="lang-th">เซ็นสัญญาฝากขายกับเรา</span></div>
+                            </div>
+                        </div>
+
+                        <div class="list-item">
+                            <div class="list-icon">4️⃣</div>
+                            <div class="list-text">
+                                <div class="list-text-title"><span class="lang-th">เราหาผู้ซื้อ</span></div>
+                                <div class="list-text-desc"><span class="lang-th">โฆษณาและค้นหาผู้ซื้อที่เหมาะสม</span></div>
+                            </div>
+                        </div>
+
+                        <div class="list-item">
+                            <div class="list-icon">5️⃣</div>
+                            <div class="list-text">
+                                <div class="list-text-title"><span class="lang-th">ได้รับเงินทุกเดือน</span></div>
+                                <div class="list-text-desc"><span class="lang-th">ผู้ซื้อจ่ายดอกเบี้ยให้คุณตลอดเดือน</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BENEFITS -->
+                    <div class="info-section">
+                        <h2 class="section-title">
+                            <span class="lang-th">✅ ข้อดีของการขายฝาก</span>
+                            <span class="lang-en">✅ Benefits</span>
+                        </h2>
+
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 50%;"><span class="lang-th">ขายตรง</span></th>
+                                    <th style="width: 50%;"><span class="lang-th">ขายฝาก</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="lang-th">💸 ได้เงินครั้งเดียว</span></td>
+                                    <td><span class="cross-mark">✗</span> <span class="lang-th">ได้เงิน</span><br><span class="check-mark">✓</span> <span class="lang-th">ได้เงินทุกเดือน</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="lang-th">📅 รอนานก่อนได้เงิน</span></td>
+                                    <td><span class="check-mark">✓</span> <span class="lang-th">ได้เงินเดือนแรก</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="lang-th">📝 ยุ่งกับเอกสาร</span></td>
+                                    <td><span class="check-mark">✓</span> <span class="lang-th">เราจัดการทั้งหมด</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="lang-th">💰 เสียค่าธรรมเนียม</span></td>
+                                    <td><span class="check-mark">✓</span> <span class="lang-th">ไม่มีค่าใช้ซ่อน</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="lang-th">🤝 รับฝากคนเดียว</span></td>
+                                    <td><span class="check-mark">✓</span> <span class="lang-th">รับฝากทุกประเภท</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- EXAMPLE -->
+                    <div class="info-section">
+                        <h2 class="section-title">
+                            <span class="lang-th">📊 ตัวอย่างการได้รับเงิน</span>
+                            <span class="lang-en">📊 Example</span>
+                        </h2>
+
+                        <div class="highlight">
+                            <div class="highlight-title"><span class="lang-th">สมมติ: บ้านมูลค่า 3,000,000 บาท</span></div>
+                            <div class="highlight-text">
+                                <span class="lang-th">
+                                    • อัตราดอกเบี้ย: 4% ต่อปี<br>
+                                    • ดอกเดือนละ: 10,000 บาท<br>
+                                    • รับตลอด 10 ปี = 1,200,000 บาท<br>
+                                    • รวมทั้งหมด: 4,200,000 บาท<br>
+                                    • ได้เงินก่อนได้ถูกหักจากการขายตรง!
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA -->
+                    <button class="btn-submit" onclick="goToPage('contact')">
+                        <span class="lang-th">📞 สนใจขายฝาก ติดต่อเรา</span>
+                        <span class="lang-en">📞 Interested? Contact Us</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ===== PAGE 2: CONTACT US ===== -->
+            <div class="page" id="page-contact">
+                <div class="page-header">
+                    <h1 class="page-title">
+                        <span class="lang-th">📞 ติดต่อเรา</span>
+                        <span class="lang-en">📞 Contact Us</span>
+                    </h1>
+                    <p class="page-subtitle">
+                        <span class="lang-th">เราพร้อมช่วยคุณ</span>
+                        <span class="lang-en">We're Ready to Help</span>
+                    </p>
+                </div>
+
+                <div class="contact-container">
+                    <!-- CONTACT INFO -->
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">☎️</div>
+                            <div class="contact-text">
+                                <div class="contact-label"><span class="lang-th">เบอร์โทรศัพท์</span></div>
+                                <div class="contact-value">053-123-4567</div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">💬</div>
+                            <div class="contact-text">
+                                <div class="contact-label">LINE ID</div>
+                                <div class="contact-value">@realthaichm</div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-text">
+                                <div class="contact-label">Email</div>
+                                <div class="contact-value">hello@realthai.co.th</div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">🕐</div>
+                            <div class="contact-text">
+                                <div class="contact-label"><span class="lang-th">เวลาทำการ</span></div>
+                                <div class="contact-value"><span class="lang-th">วันจันทร์-วันเสาร์ 9:00-18:00</span></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-text">
+                                <div class="contact-label"><span class="lang-th">ที่อยู่</span></div>
+                                <div class="contact-value"><span class="lang-th">เชียงใหม่, ประเทศไทย</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CONTACT FORM -->
+                    <div class="info-section" style="margin-top: 16px;">
+                        <h2 class="section-title">
+                            <span class="lang-th">📝 ส่งข้อความถึงเรา</span>
+                            <span class="lang-en">📝 Send Message</span>
+                        </h2>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                <span class="lang-th">ชื่อของคุณ</span>
+                                <span class="lang-en">Your Name</span>
+                            </label>
+                            <input type="text" class="form-input" placeholder="Your Name">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                <span class="lang-th">เบอร์โทรศัพท์</span>
+                                <span class="lang-en">Phone Number</span>
+                            </label>
+                            <input type="tel" class="form-input" placeholder="089-123-4567">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                <span class="lang-th">บริการที่สนใจ</span>
+                                <span class="lang-en">Interested Service</span>
+                            </label>
+                            <select class="form-select">
+                                <option><span class="lang-th">เลือกบริการ</span></option>
+                                <option><span class="lang-th">ขายฝาก</span></option>
+                                <option><span class="lang-th">ปล่อยเช่า</span></option>
+                                <option><span class="lang-th">รีโนเวท</span></option>
+                                <option><span class="lang-th">ซื้อขายทั่วไป</span></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                <span class="lang-th">ข้อความ</span>
+                                <span class="lang-en">Message</span>
+                            </label>
+                            <textarea class="form-textarea" placeholder="Write your message..."></textarea>
+                        </div>
+
+                        <button class="btn-submit">
+                            <span class="lang-th">📤 ส่งข้อความ</span>
+                            <span class="lang-en">📤 Send Message</span>
+                        </button>
+                    </div>
+
+                    <!-- QUICK CONTACT -->
+                    <div class="info-section">
+                        <h2 class="section-title">
+                            <span class="lang-th">⚡ ติดต่อด่วน</span>
+                            <span class="lang-en">⚡ Quick Contact</span>
+                        </h2>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <a href="tel:0531234567" style="
+                                background: var(--primary);
+                                color: white;
+                                padding: 12px;
+                                border-radius: 6px;
+                                text-align: center;
+                                text-decoration: none;
+                                font-weight: bold;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                gap: 8px;
+                            ">
+                                <span>☎️</span>
+                                <span><span class="lang-th">โทร</span></span>
+                            </a>
+                            <a href="https://line.me/ti/p/@realthaichm" style="
+                                background: #00B900;
+                                color: white;
+                                padding: 12px;
+                                border-radius: 6px;
+                                text-align: center;
+                                text-decoration: none;
+                                font-weight: bold;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                gap: 8px;
+                            ">
+                                <span>💬</span>
+                                <span>LINE</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== PAGE 3: ABOUT US ===== -->
+            <div class="page" id="page-about">
+                <div class="page-header">
+                    <h1 class="page-title">
+                        <span class="lang-th">ℹ️ เกี่ยวกับเรา</span>
+                        <span class="lang-en">ℹ️ About Us</span>
+                    </h1>
+                    <p class="page-subtitle">
+                        <span class="lang-th">บริษัทอสังหาริมทรัพย์ที่เชื่อถือได้</span>
+                        <span class="lang-en">Trusted Real Estate Company</span>
+                    </p>
+                </div>
+
+                <div class="about-container">
+                    <!-- COMPANY STORY -->
+                    <div class="about-section">
+                        <h2 class="about-title">
+                            <span class="lang-th">📖 เรื่องราวของเรา</span>
+                            <span class="lang-en">📖 Our Story</span>
+                        </h2>
+                        <p class="about-text">
+                            <span class="lang-th">
+                                บริษัท Thai Real Estate ก่อตั้งขึ้นเมื่อ ปี 2011 
+                                ด้วยวัตถุประสงค์ที่ชัดเจนคือ "ช่วยให้ผู้คนได้บ้านดีในราคาที่ยุติธรรม 
+                                และช่วยเจ้าของทรัพย์สินขายหรือปล่อยเช่าได้อย่างสะดวก"
+                                
+                                สำหรับกว่า 12 ปี เราได้ช่วยลูกค้านับพันรายในเชียงใหม่ 
+                                จากการซื้อขาย ปล่อยเช่า ตกแต่งบ้าน และขายฝาก
+                            </span>
+                            <span class="lang-en">
+                                Thai Real Estate was founded in 2011 with a clear mission: 
+                                "Help people find good homes at fair prices and help property owners 
+                                sell or rent easily."
+                                
+                                For over 12 years, we've helped thousands of customers in Chiang Mai 
+                                through sales, rentals, renovations, and consignment services.
+                            </span>
+                        </p>
+                    </div>
+
+                    <!-- STATS -->
+                    <div class="about-section">
+                        <h2 class="about-title">
+                            <span class="lang-th">📊 สิ่งที่เราสำเร็จ</span>
+                            <span class="lang-en">📊 Our Achievements</span>
+                        </h2>
+                        <div class="stats-grid">
+                            <div class="stat-box">
+                                <div class="stat-number">856+</div>
+                                <div class="stat-label"><span class="lang-th">ขายสำเร็จ</span></div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">423+</div>
+                                <div class="stat-label"><span class="lang-th">เช่าสำเร็จ</span></div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">1,200+</div>
+                                <div class="stat-label"><span class="lang-th">ตกแต่ง</span></div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">12+</div>
+                                <div class="stat-label"><span class="lang-th">ปีประสบการณ์</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SERVICES -->
+                    <div class="about-section">
+                        <h2 class="about-title">
+                            <span class="lang-th">🎯 บริการของเรา</span>
+                            <span class="lang-en">🎯 Our Services</span>
+                        </h2>
+                        <div class="values-list">
+                            <div class="value-item">
+                                <div class="value-icon">🏠</div>
+                                <div class="value-text">
+                                    <strong><span class="lang-th">ซื้อขายอสังหาริมทรัพย์</span></strong>
+                                    <span class="lang-th">บ้าน ที่ดิน คอนโด ทุกประเภท</span>
+                                </div>
+                            </div>
+                            <div class="value-item">
+                                <div class="value-icon">🔑</div>
+                                <div class="value-text">
+                                    <strong><span class="lang-th">ปล่อยเช่า</span></strong>
+                                    <span class="lang-th">หาผู้เช่าที่เหมาะสม จัดการเช่า</span>
+                                </div>
+                            </div>
+                            <div class="value-item">
+                                <div class="value-icon">💰</div>
+                                <div class="value-text">
+                                    <strong><span class="lang-th">ขายฝาก</span></strong>
+                                    <span class="lang-th">ได้รับเงินดอกเดือนละครั้ง</span>
+                                </div>
+                            </div>
+                            <div class="value-item">
+                                <div class="value-icon">🎨</div>
+                                <div class="value-text">
+                                    <strong><span class="lang-th">รีโนเวท</span></strong>
+                                    <span class="lang-th">ออกแบบและตกแต่งภายใน</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VALUES -->
+                    <div class="about-section">
+                        <h2 class="about-title">
+                            <span class="lang-th">💎 ค่านิยมของเรา</span>
+                            <span class="lang-en">💎 Our Values</span>
+                        </h2>
+                        <div class="values-list">
+                            <div class="value-item">
+                                <div class="value-icon">🤝</div>
+                                <div class="value-text">
+                                    <strong><span class="lang-th">ความซื่อสัตย์</span></strong>
+                                    <span class="lang-th">เราไม่หลอกเอา คิดถึงลูกค้าก่อน</span>
+                                </div>
+                            </div>
+                            <div class="value-item">
+                                <div class="value-icon">⚡</div>
+                                <div class="value-text">
+                                    <strong><span class="lang-th">ประสิทธิภาพ</span></strong>
+                                    <span class="lang-th">ทำด่วน ทำให้สำเร็จในระยะเวลาที่สั้น</span>
+                                </div>
+                            </div>
+                            <div class="value-item">
+                                <div class="value-icon">✨</div>
+                                <div class="value-text">
+                                    <strong><span class="lang-th">มืออาชีพ</span></strong>
+                                    <span class="lang-th">ทีมงานมีประสบการณ์ และรู้เรื่อง</span>
+                                </div>
+                            </div>
+                            <div class="value-item">
+                                <div class="value-icon">📞</div>
+                                <div class="value-text">
+                                    <strong><span class="lang-th">บริการลูกค้า</span></strong>
+                                    <span class="lang-th">ตอบรับ 24 ชั่วโมง ช่วยเหลือทั้งหมด</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SEO CONTENT -->
+                    <div class="about-section">
+                        <h2 class="about-title">
+                            <span class="lang-th">🔍 ทำไมเลือก Thai Real Estate</span>
+                            <span class="lang-en">🔍 Why Choose Thai Real Estate</span>
+                        </h2>
+                        <p class="about-text">
+                            <span class="lang-th">
+                                1. <strong>ประสบการณ์</strong> - ทำงานในธุรกิจอสังหาริมทรัพย์เชียงใหม่มากกว่า 12 ปี 
+                                เราเข้าใจตลาดและลูกค้า
+                                
+                                2. <strong>บริการครบวงจร</strong> - ซื้อขาย ปล่อยเช่า ตกแต่ง ขายฝาก 
+                                ทั้งหมดในที่เดียว
+                                
+                                3. <strong>ราคายุติธรรม</strong> - ไม่มีค่าใช้ซ่อน ไม่หลอกลวง 
+                                ราคาตรงตามความเป็นจริง
+                                
+                                4. <strong>ประสิทธิภาพ</strong> - ขายเร็ว เช่าเร็ว สำเร็จงานตามเวลา
+                                
+                                5. <strong>บริการหลังการขาย</strong> - เราดูแลลูกค้าแม้หลังจากซื้อขายเสร็จสิ้น
+                            </span>
+                        </p>
+                    </div>
+
+                    <!-- CTA -->
+                    <button class="btn-submit" onclick="goToPage('contact')">
+                        <span class="lang-th">📞 ติดต่อเราเลย</span>
+                        <span class="lang-en">📞 Contact Us Today</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- BOTTOM NAVIGATION -->
+        <div class="bottom-nav">
+            <button class="nav-item active" onclick="goToPage('consignment')">
+                <div class="nav-icon">💰</div>
+                <span><span class="lang-th">ขายฝาก</span></span>
+            </button>
+            <button class="nav-item" onclick="goToPage('contact')">
+                <div class="nav-icon">📞</div>
+                <span><span class="lang-th">ติดต่อ</span></span>
+            </button>
+            <button class="nav-item" onclick="goToPage('about')">
+                <div class="nav-icon">ℹ️</div>
+                <span><span class="lang-th">เกี่ยวกับ</span></span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function goToPage(pageName) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page-' + pageName).classList.add('active');
+            
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            event.target.closest('.nav-item')?.classList.add('active');
+            
+            document.querySelector('.content-area').scrollTop = 0;
+        }
+
+        function setLanguage(lang) {
+            if (lang === 'th') {
+                document.querySelectorAll('.lang-en').forEach(el => el.classList.remove('active'));
+                document.querySelectorAll('.lang-th').forEach(el => el.classList.add('active'));
+                document.querySelectorAll('.lang-toggle-mobile')[0].classList.add('active');
+                document.querySelectorAll('.lang-toggle-mobile')[1].classList.remove('active');
+            } else {
+                document.querySelectorAll('.lang-th').forEach(el => el.classList.remove('active'));
+                document.querySelectorAll('.lang-en').forEach(el => el.classList.add('active'));
+                document.querySelectorAll('.lang-toggle-mobile')[0].classList.remove('active');
+                document.querySelectorAll('.lang-toggle-mobile')[1].classList.add('active');
+            }
+        }
+
+        setLanguage('th');
+    </script>
+</body>
+</html>
