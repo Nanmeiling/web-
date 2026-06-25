@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เกี่ยวกับเรา - Chiang Mai Home</title>
+    <style>
+        :root {
+            --navy: #1a2f47;
+            --gold: #b8956a;
+            --white: #ffffff;
+            --bg: #f9fafb;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --border: #e5e7eb;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f3f0; color: var(--text-dark); line-height: 1.6; font-size: 16px; }
+
+        .category-menu { background: #f5f3f0; padding: 0.8rem 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.03); }
+        .category-links { display: flex; gap: 2rem; list-style: none; max-width: 1400px; margin: 0 auto; flex-wrap: wrap; }
+        .category-links a { color: var(--text-dark); text-decoration: none; font-size: 0.85em; font-weight: 500; padding: 0.5rem 0; border-bottom: 2px solid transparent; transition: all 0.3s; white-space: nowrap; }
+        .category-links a:hover, .category-links a.active { color: var(--navy); border-bottom-color: var(--navy); }
+
+        .header { background: #f5f3f0; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); position: sticky; top: 40px; z-index: 100; }
+        .logo-section { display: flex; align-items: center; gap: 1rem; }
+        .logo-icon { font-family: Georgia, serif; font-size: 1.8em; font-weight: 700; color: var(--navy); }
+        .logo-text h1 { font-size: 0.8em; letter-spacing: 2px; color: var(--navy); font-weight: 600; }
+        .phone { color: var(--text-dark); font-weight: 600; font-size: 0.95em; }
+
+        .hero { background: linear-gradient(135deg, var(--navy) 0%, #2a4457 100%); color: var(--white); padding: 3rem 2rem; text-align: center; }
+        .hero h1 { font-size: 2em; margin-bottom: 0.5rem; font-weight: 700; }
+        .hero p { font-size: 0.95em; opacity: 0.95; }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+
+        .content-section { background: #f5f3f0; padding: 2rem; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 2rem; }
+        .content-section h2 { color: var(--navy); font-size: 1.4em; margin-top: 2rem; margin-bottom: 1rem; font-weight: 700; }
+        .content-section h2:first-child { margin-top: 0; }
+        .content-section p { color: var(--text-dark); margin-bottom: 1rem; text-align: justify; line-height: 1.8; }
+        .content-section strong { color: var(--gold); font-weight: 600; }
+
+        .highlight-box { background: linear-gradient(135deg, rgba(26, 47, 71, 0.05) 0%, rgba(184, 149, 106, 0.05) 100%); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--gold); margin: 1.5rem 0; }
+        .highlight-box h3 { color: var(--navy); margin-bottom: 0.5rem; }
+
+        .footer { background: var(--navy); color: var(--white); padding: 3rem 2rem; margin-top: 3rem; }
+        .footer-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-bottom: 2rem; }
+        .footer-section h3 { color: var(--gold); margin-bottom: 1rem; font-size: 1em; }
+        .footer-section p { font-size: 0.9em; color: rgba(255,255,255,0.8); display: block; margin-bottom: 0.5rem; }
+        .qr-placeholder { width: 120px; height: 120px; background: rgba(255,255,255,0.1); border-radius: 8px; margin-top: 1rem; border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 0.85em; color: rgba(255,255,255,0.5); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 2rem; text-align: center; font-size: 0.85em; color: rgba(255,255,255,0.6); max-width: 1400px; margin: 0 auto; }
+
+        @media (max-width: 768px) {
+            .footer-container { grid-template-columns: 1fr; }
+            .category-links { gap: 1rem; }
+            .category-links a { font-size: 0.75em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="category-menu">
+        <div class="category-links">
+            <a href="index.html">หน้าแรก</a>
+            <a href="properties-buy.html">ซื้อ</a>
+            <a href="properties-rent.html">เช่า</a>
+            <a href="consignment-sell-service.html">ฝากขาย</a>
+            <a href="consignment-rent-service.html">ฝากเช่า</a>
+            <a href="pawn-service.html">ขายฝาก</a>
+            <a href="design-service.html">รับออกแบบตกแต่ง</a>
+            <a href="about-us.html" class="active">เกี่ยวกับเรา</a>
+            <a href="contact-us.html">ติดต่อเรา</a>
+        </div>
+    </div>
+
+    <div class="header">
+        <div class="logo-section">
+            <div class="logo-icon">CH</div>
+            <div class="logo-text"><h1>CHIANGMAI HOME</h1></div>
+        </div>
+        <span class="phone">064-7929626</span>
+    </div>
+
+    <div class="hero">
+        <h1>เกี่ยวกับ Chiang Mai Home</h1>
+        <p>นายหน้าอสังหาริมทรัพย์มืออาชีพในเชียงใหม่ ที่ยึดหลักความโปร่งใสและเป็นธรรม</p>
+    </div>
+
+    <div class="container">
+        <div class="content-section">
+            <h2>เกี่ยวกับเรา — Chiang Mai Home นายหน้าอสังหาริมทรัพย์มืออาชีพในเชียงใหม่</h2>
+            
+            <p>Chiang Mai Home คือทีม <strong>นายหน้าขายบ้าน เชียงใหม่</strong> ที่ดูแลการซื้อ ขาย เช่า และฝากขายอสังหาริมทรัพย์อย่างครบวงจร เราเกิดขึ้นจากความตั้งใจที่อยากให้คนเชียงใหม่และผู้ที่กำลังมองหาบ้านในภาคเหนือ ได้รับบริการที่โปร่งใส เป็นธรรม และเข้าใจตลาดท้องถิ่นอย่างแท้จริง ไม่ว่าคุณจะเป็นเจ้าของทรัพย์ที่อยากขายหรือปล่อยเช่า ผู้ซื้อที่กำลังตามหาบ้านสักหลังที่ใช่ หรือผู้ที่ต้องการเงินทุนเร่งด่วนผ่านการขายฝาก เราพร้อมเป็นตัวกลางที่คุณวางใจได้ในทุกขั้นตอน</p>
+
+            <h2>นายหน้าขายบ้านและที่ดินในเชียงใหม่ที่เข้าใจตลาดจริง</h2>
+            
+            <p>การซื้อขายอสังหาริมทรัพย์คือการตัดสินใจครั้งใหญ่ที่ผูกพันกับเงินก้อนสำคัญในชีวิต การเลือก <strong>บริษัท รับขายบ้าน เชียงใหม่</strong> ที่มีประสบการณ์จริงและทำงานอย่างมืออาชีพ จึงเป็นจุดเริ่มต้นที่ทำให้ทุกอย่างราบรื่นตั้งแต่ต้นจนปิดการขาย</p>
+
+            <p>ในฐานะ <strong>นายหน้าขายที่ดิน เชียงใหม่</strong> และ <strong>นายหน้าที่ดิน ภาคเหนือ</strong> เรารู้จักทำเลในแต่ละย่าน เข้าใจราคาตลาดที่แท้จริง และอ่านพฤติกรรมของผู้ซื้อในพื้นที่ได้แม่นยำ ความเข้าใจตรงนี้ทำให้เราวางกลยุทธ์การขายได้ตรงจุด ตั้งราคาที่ "ขายได้จริงและยุติธรรม" ไม่สูงเกินจริงจนทรัพย์ค้างตลาด และไม่กดราคาจนเจ้าของเสียประโยชน์</p>
+
+            <h2>รับฝากขายบ้าน — บริหารการขายให้ครบทุกขั้นตอน</h2>
+            
+            <p>นายหน้าที่ดีไม่ได้ทำหน้าที่เพียง "หาคนซื้อ" แต่บริหารการขายทั้งกระบวนการ เริ่มตั้งแต่ประเมินราคาตามสภาพตลาดจริง จัดเตรียมเอกสาร ถ่ายภาพและทำสื่อโฆษณาให้ทรัพย์ดูน่าสนใจ คัดกรองผู้ซื้อที่มีกำลังซื้อจริง ไปจนถึงการเจรจาต่อรองและประสานงานโอนกรรมสิทธิ์ที่สำนักงานที่ดิน</p>
+
+            <p>เมื่อคุณฝากขายกับเรา ทรัพย์ของคุณจะถูกนำเสนอผ่านช่องทางการตลาดที่ครอบคลุม ทั้งเว็บไซต์อสังหาริมทรัพย์ โซเชียลมีเดีย และเครือข่ายนายหน้าในเชียงใหม่ เพื่อเข้าถึงผู้ซื้อให้มากที่สุดในเวลาที่สั้นที่สุด</p>
+
+            <h2>รับปล่อยเช่า — นายหน้าบ้านเช่าและคอนโดเช่า</h2>
+            
+            <p>สำหรับเจ้าของที่ต้องการสร้างรายได้จากอสังหาฯ อย่างต่อเนื่อง เราคือ <strong>นายหน้าบ้านเช่า เชียงใหม่</strong> ที่ดูแลการปล่อยเช่าให้คุณอย่างครบวงจร เราคัดกรองผู้เช่าอย่างรอบคอบ ทำสัญญาเช่าที่รัดกุม และประสานงานระหว่างผู้เช่ากับเจ้าของ เพื่อให้คุณปล่อยเช่าได้อย่างสบายใจ</p>
+
+            <h2>ทำไมต้องเลือก Chiang Mai Home</h2>
+            
+            <div class="highlight-box">
+                <h3>ประสบการณ์จริงในตลาดเชียงใหม่</h3>
+                <p>เรารู้จักทำเล รู้ราคาตลาดในแต่ละย่าน และเข้าใจพฤติกรรมผู้ซื้อ ทำให้วางกลยุทธ์ได้แม่นยำ</p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>ฐานทรัพย์และเครือข่ายกว้าง</h3>
+                <p>ด้วยบ้านขายและเช่าจำนวนมากในมือ ทรัพย์ของคุณเข้าถึงผู้ซื้อได้เร็วและกว้างกว่าการประกาศเอง</p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>โปร่งใสทุกขั้นตอน</h3>
+                <p>เราชี้แจงค่าใช้จ่าย ค่าคอมมิชชั่น และเงื่อนไขอย่างชัดเจนตั้งแต่ต้น ไม่มีค่าใช้จ่ายแอบแฝง</p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>ดูแลถึงวันโอน</h3>
+                <p>งานของเราไม่จบแค่หาคนซื้อได้ แต่อยู่เคียงข้างคุณจนถึงวันโอนกรรมสิทธิ์</p>
+            </div>
+
+            <h2>เริ่มต้นกับเราได้ง่าย ๆ</h2>
+            
+            <p>เพียงติดต่อทีมงานพร้อมรายละเอียดเบื้องต้นของทรัพย์ เราจะนัดประเมินสถานที่จริง แนะนำราคาที่เหมาะสม และกระจายทรัพย์สู่ตลาดทันที</p>
+
+            <p style="color: var(--navy); font-weight: 600; margin-top: 2rem;"><strong>ติดต่อเรา</strong> วันนี้ เพื่อให้ทุกการซื้อ ขาย เช่า และขายฝาก เป็นเรื่องที่ราบรื่นและน่าประทับใจ</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>CH</h3>
+                <p>CHIANG MAI HOME</p>
+                <p style="font-size: 0.8em; margin-top: 0.5rem;">บริการอสังหาริมทรัพย์ครบวงจร</p>
+            </div>
+            <div class="footer-section">
+                <h3>ติดต่อ</h3>
+                <p>โทรศัพท์: 064-7929626</p>
+                <p>45/1 ถ.เชียงใหม่-ลำปาง</p>
+                <p style="font-size: 0.85em;">หมู่บ้านสนสวย ต.ช้างเผือก</p>
+                <p style="font-size: 0.85em;">เมือง เชียงใหม่ 50300</p>
+            </div>
+            <div class="footer-section">
+                <h3>LINE</h3>
+                <div class="qr-placeholder">[QR Code]</div>
+            </div>
+            <div class="footer-section">
+                <h3>Social Media</h3>
+                <p>Facebook: Chiangmai Home</p>
+                <p>TikTok: Chiangmai Home</p>
+                <div class="qr-placeholder" style="margin-top: 0.5rem;">[WhatsApp QR]</div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Chiang Mai Home Co., Ltd. ทุกสิทธิ์สงวน</p>
+        </div>
+    </div>
+</body>
+</html>

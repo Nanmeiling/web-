@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เช่า - Chiang Mai Home</title>
+    <style>
+        :root {
+            --navy: #1a2f47;
+            --gold: #b8956a;
+            --white: #ffffff;
+            --bg: #f9fafb;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --border: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f3f0;
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* HEADER */
+        .header {
+            background: #f5f3f0;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            font-family: Georgia, serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .logo-text h1 {
+            font-size: 0.8em;
+            letter-spacing: 2px;
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: all 0.3s;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+
+        .phone {
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, var(--navy) 0%, #2a4457 100%);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2em;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 0.95em;
+            opacity: 0.95;
+        }
+
+        /* SEARCH SECTION */
+        .search-section {
+            max-width: 1400px;
+            margin: -1.5rem auto 2rem;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 50;
+        }
+
+        .search-container {
+            background: #f5f3f0;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.85rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            font-size: 0.95em;
+            color: var(--text-dark);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-light);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(184, 149, 106, 0.1);
+        }
+
+        .search-btn {
+            background: var(--gold);
+            color: var(--white);
+            border: none;
+            padding: 0.85rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .search-btn:hover {
+            background: #a07c55;
+            transform: translateY(-2px);
+        }
+
+        /* FILTER CHIPS */
+        .filter-chips {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .chip {
+            background: #f5f3f0;
+            border: 1px solid var(--border);
+            padding: 0.6rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9em;
+            color: var(--text-dark);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chip:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .chip.active {
+            background: var(--navy);
+            color: var(--white);
+            border-color: var(--navy);
+        }
+
+        .chip-label {
+            font-weight: 500;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 200;
+            align-items: flex-end;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #f5f3f0;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 16px 16px 0 0;
+            padding: 2rem;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .modal-header h2 {
+            color: var(--navy);
+            font-size: 1.2em;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--navy);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .radio-item input[type="radio"] {
+            cursor: pointer;
+        }
+
+        .range-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .range-inputs input {
+            padding: 0.8rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.9em;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 0.85rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .modal-btn-cancel {
+            background: #f5f3f0;
+            color: var(--navy);
+            border: 1px solid var(--border);
+        }
+
+        .modal-btn-cancel:hover {
+            background: var(--bg);
+        }
+
+        .modal-btn-apply {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .modal-btn-apply:hover {
+            background: #a07c55;
+        }
+
+        /* MAP BUTTON */
+        .map-toggle {
+            background: var(--navy);
+            color: var(--white);
+            border: none;
+            padding: 0.85rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-left: auto;
+        }
+
+        .map-toggle:hover {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        /* MAP SECTION */
+        .map-section {
+            max-width: 1400px;
+            margin: 0 auto 2rem;
+            padding: 0 2rem;
+        }
+
+        .map-container {
+            display: none;
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .map-container.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+        }
+
+        /* PROPERTIES CONTAINER */
+        .properties-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.6em;
+            color: var(--navy);
+            font-weight: 700;
+        }
+
+        .property-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .property-card {
+            background: #f5f3f0;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .property-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .property-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 0.9em;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .property-favorite {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            background: #f5f3f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2em;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .property-favorite:hover {
+            color: var(--gold);
+        }
+
+        .property-info {
+            padding: 1.5rem;
+        }
+
+        .property-info h3 {
+            color: var(--navy);
+            margin-bottom: 0.8rem;
+            font-size: 0.95em;
+            font-weight: 600;
+        }
+
+        .property-location {
+            color: var(--text-light);
+            font-size: 0.85em;
+            margin-bottom: 0.8rem;
+        }
+
+        .property-details {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.85em;
+            color: var(--text-light);
+            flex-wrap: wrap;
+        }
+
+        .property-price {
+            font-size: 1.1em;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .property-btn {
+            width: 100%;
+            background: #f5f3f0;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 0.7rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .property-btn:hover {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-size: 1em;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+
+        .qr-placeholder {
+            width: 120px;
+            height: 120px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,0.3);
+            font-size: 0.85em;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.85em;
+            color: rgba(255,255,255,0.6);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .property-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .modal-content {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 1.4em;
+            }
+
+            .search-bar {
+                flex-direction: column;
+            }
+
+            .property-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-chips {
+                gap: 0.5rem;
+            }
+
+            .chip {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.85em;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- CATEGORY MENU -->
+    <div style="background: #f5f3f0; padding: 0.8rem 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.03);">
+        <div style="max-width: 1400px; margin: 0 auto; display: flex; gap: 2rem; list-style: none; flex-wrap: wrap;">
+            <a href="index.html" style="color: #333; text-decoration: none; font-size: 0.9em; font-weight: 500; padding: 0.5rem 0; border-bottom: 2px solid transparent; white-space: nowrap;">หน้าแรก</a>
+            <a href="properties-buy.html" style="color: #333; text-decoration: none; font-size: 0.9em; font-weight: 500; padding: 0.5rem 0; border-bottom: 2px solid transparent; white-space: nowrap;">ซื้อ</a>
+            <a href="properties-rent.html" style="color: #1a2f47; text-decoration: none; font-size: 0.9em; font-weight: 500; padding: 0.5rem 0; border-bottom: 2px solid #1a2f47; white-space: nowrap;">เช่า</a>
+            <a href="consignment-sell-service.html" style="color: #333; text-decoration: none; font-size: 0.9em; font-weight: 500; padding: 0.5rem 0; border-bottom: 2px solid transparent; white-space: nowrap;">ฝากขาย</a>
+            <a href="consignment-rent-service.html" style="color: #333; text-decoration: none; font-size: 0.9em; font-weight: 500; padding: 0.5rem 0; border-bottom: 2px solid transparent; white-space: nowrap;">ฝากเช่า</a>
+            <a href="pawn-service.html" style="color: #333; text-decoration: none; font-size: 0.9em; font-weight: 500; padding: 0.5rem 0; border-bottom: 2px solid transparent; white-space: nowrap;">ขายฝาก</a>
+            <a href="design-service.html" style="color: #333; text-decoration: none; font-size: 0.9em; font-weight: 500; padding: 0.5rem 0; border-bottom: 2px solid transparent; white-space: nowrap;">รับออกแบบตกแต่ง</a>
+            <a href="about-us.html" style="color: #333; text-decoration: none; font-size: 0.9em; font-weight: 500; padding: 0.5rem 0; border-bottom: 2px solid transparent; white-space: nowrap;">เกี่ยวกับเรา</a>
+            <a href="contact-us.html" style="color: #333; text-decoration: none; font-size: 0.9em; font-weight: 500; padding: 0.5rem 0; border-bottom: 2px solid transparent; white-space: nowrap;">ติดต่อเรา</a>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo-section">
+            <div class="logo-icon">CH</div>
+            <div class="logo-text">
+                <h1>CHIANGMAI HOME</h1>
+            </div>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html">หน้าแรก</a></li>
+            <li><a href="properties-buy.html">ขาย</a></li>
+            <li><a href="properties-rent.html" class="active">เช่า</a></li>
+            <li><a href="consignment-sell-service.html">ฝากขาย</a></li>
+            <li><a href="pawn-service.html">ขายฝาก</a></li>
+            <li><a href="design-service.html">รับออกแบบตกแต่ง</a></li>
+            <li><a href="contact-us.html">ติดต่อ</a></li>
+        </ul>
+        <span class="phone">064-7929626</span>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <h1>ค้นหาบ้าน คอนโด ที่เช่าได้ในเชียงใหม่</h1>
+        <p>ค้นหาทรัพย์สินเช่าที่ตรงกับความต้องการของคุณ</p>
+    </div>
+
+    <!-- SEARCH SECTION -->
+    <div class="search-section">
+        <div class="search-container">
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="ค้นหา ชื่อทรัพย์สิน">
+                <button class="search-btn">ค้นหา</button>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="filter-chips">
+                    <button class="chip" onclick="openModal('type')">
+                        <span class="chip-label">ประเภท</span>
+                    </button>
+                    <button class="chip" onclick="openModal('price')">
+                        <span class="chip-label">ราคาเช่า</span>
+                    </button>
+                    <button class="chip" onclick="openModal('landsize')">
+                        <span class="chip-label">ขนาดที่ดิน</span>
+                    </button>
+                    <button class="chip" onclick="openModal('features')">
+                        <span class="chip-label">พื้นที่ใช้สอย</span>
+                    </button>
+                    <button class="chip" onclick="openModal('rooms')">
+                        <span class="chip-label">จำนวนห้อง</span>
+                    </button>
+                </div>
+                <button class="map-toggle" onclick="toggleMap()">แผนที่</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAP SECTION -->
+    <div class="map-section">
+        <div class="map-container" id="mapContainer">
+            [แผนที่ Google Map]
+        </div>
+    </div>
+
+    <!-- MODAL: PROPERTY TYPE -->
+    <div class="modal" id="typeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>ประเภทอสังหาริมทรัพย์</h2>
+                <button class="modal-close" onclick="closeModal('type')">×</button>
+            </div>
+            <div class="form-group">
+                <div class="radio-group">
+                    <label class="radio-item">
+                        <input type="radio" name="type" value="house" checked>
+                        <span>บ้านเดี่ยว</span>
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="type" value="townhouse">
+                        <span>บ้านแฝด</span>
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="type" value="townhome">
+                        <span>ทาวน์เฮาส์</span>
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="type" value="condo">
+                        <span>คอนโด</span>
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="type" value="villa">
+                        <span>วิลล่า</span>
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="type" value="apartment">
+                        <span>อพาร์ทเมนท์</span>
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="type" value="office">
+                        <span>สำนักงาน</span>
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="type" value="factory">
+                        <span>โกดัง-โรงงาน</span>
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="type" value="commercial">
+                        <span>อาคารพานิชย์</span>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-cancel" onclick="closeModal('type')">ยกเลิก</button>
+                <button class="modal-btn modal-btn-apply" onclick="closeModal('type')">ปรับตามเงื่อนไข</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: RENTAL PRICE -->
+    <div class="modal" id="priceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>ราคาเช่า</h2>
+                <button class="modal-close" onclick="closeModal('price')">×</button>
+            </div>
+            <div class="form-group">
+                <label>ราคาเช่าต่ำสุด - สูงสุด (บาท/เดือน)</label>
+                <div class="range-inputs">
+                    <input type="number" placeholder="฿ ต่ำสุด" value="">
+                    <input type="number" placeholder="฿ สูงสุด" value="">
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-cancel" onclick="closeModal('price')">ยกเลิก</button>
+                <button class="modal-btn modal-btn-apply" onclick="closeModal('price')">ปรับตามเงื่อนไข</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: LAND SIZE -->
+    <div class="modal" id="landsizeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>ขนาดที่ดิน</h2>
+                <button class="modal-close" onclick="closeModal('landsize')">×</button>
+            </div>
+            <div class="form-group">
+                <label>ขนาดที่ดินต่ำสุด - สูงสุด (ตร.ม.)</label>
+                <div class="range-inputs">
+                    <input type="number" placeholder="ตร.ม. ต่ำสุด" value="">
+                    <input type="number" placeholder="ตร.ม. สูงสุด" value="">
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-cancel" onclick="closeModal('landsize')">ยกเลิก</button>
+                <button class="modal-btn modal-btn-apply" onclick="closeModal('landsize')">ปรับตามเงื่อนไข</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: FEATURES (USABLE AREA) -->
+    <div class="modal" id="featuresModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>พื้นที่ใช้สอย</h2>
+                <button class="modal-close" onclick="closeModal('features')">×</button>
+            </div>
+            <div class="form-group">
+                <label>พื้นที่ใช้สอยต่ำสุด - สูงสุด (ตร.ม.)</label>
+                <div class="range-inputs">
+                    <input type="number" placeholder="ตร.ม. ต่ำสุด" value="">
+                    <input type="number" placeholder="ตร.ม. สูงสุด" value="">
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-cancel" onclick="closeModal('features')">ยกเลิก</button>
+                <button class="modal-btn modal-btn-apply" onclick="closeModal('features')">ปรับตามเงื่อนไข</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: ROOMS COUNT -->
+    <div class="modal" id="roomsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>จำนวนห้อง</h2>
+                <button class="modal-close" onclick="closeModal('rooms')">×</button>
+            </div>
+            <div class="form-group">
+                <label>จำนวนห้องนอน</label>
+                <input type="number" placeholder="จำนวนห้องนอน" min="0" value="">
+            </div>
+            <div class="form-group">
+                <label>จำนวนห้องน้ำ</label>
+                <input type="number" placeholder="จำนวนห้องน้ำ" min="0" value="">
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-cancel" onclick="closeModal('rooms')">ยกเลิก</button>
+                <button class="modal-btn modal-btn-apply" onclick="closeModal('rooms')">ปรับตามเงื่อนไข</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROPERTIES -->
+    <div class="properties-container">
+        <div class="section-header">
+            <h2 class="section-title">ทรัพย์สินเช่าในเชียงใหม่</h2>
+        </div>
+
+        <div class="property-grid">
+            <!-- CARD 1 -->
+            <div class="property-card">
+                <div class="property-image">
+                    <div class="property-favorite">♡</div>
+                    [รูปทรัพย์สิน]
+                </div>
+                <div class="property-info">
+                    <h3>อพาร์ทเมนท์สมบูรณ์ใจกลางเมือง</h3>
+                    <div class="property-location">เชียงใหม่</div>
+                    <div class="property-details">
+                        <span>2 ห้องนอน</span>
+                        <span>2 ห้องน้ำ</span>
+                        <span>80 ตร.ม.</span>
+                    </div>
+                    <div class="property-price">฿15,000 / เดือน</div>
+                    <button class="property-btn">ดูรายละเอียด</button>
+                </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="property-card">
+                <div class="property-image">
+                    <div class="property-favorite">♡</div>
+                    [รูปทรัพย์สิน]
+                </div>
+                <div class="property-info">
+                    <h3>บ้านเดี่ยวสวยสไตล์โมเดิร์น</h3>
+                    <div class="property-location">เชียงใหม่</div>
+                    <div class="property-details">
+                        <span>3 ห้องนอน</span>
+                        <span>2 ห้องน้ำ</span>
+                        <span>150 ตร.ม.</span>
+                    </div>
+                    <div class="property-price">฿25,000 / เดือน</div>
+                    <button class="property-btn">ดูรายละเอียด</button>
+                </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="property-card">
+                <div class="property-image">
+                    <div class="property-favorite">♡</div>
+                    [รูปทรัพย์สิน]
+                </div>
+                <div class="property-info">
+                    <h3>คอนโดวิวเชียงใหม่ใกล้ธรรมชาติ</h3>
+                    <div class="property-location">เชียงใหม่</div>
+                    <div class="property-details">
+                        <span>1 ห้องนอน</span>
+                        <span>1 ห้องน้ำ</span>
+                        <span>60 ตร.ม.</span>
+                    </div>
+                    <div class="property-price">฿12,000 / เดือน</div>
+                    <button class="property-btn">ดูรายละเอียด</button>
+                </div>
+            </div>
+
+            <!-- CARD 4 -->
+            <div class="property-card">
+                <div class="property-image">
+                    <div class="property-favorite">♡</div>
+                    [รูปทรัพย์สิน]
+                </div>
+                <div class="property-info">
+                    <h3>ทาวน์เฮาส์สะดวกสบาย</h3>
+                    <div class="property-location">เชียงใหม่</div>
+                    <div class="property-details">
+                        <span>3 ห้องนอน</span>
+                        <span>3 ห้องน้ำ</span>
+                        <span>180 ตร.ม.</span>
+                    </div>
+                    <div class="property-price">฿30,000 / เดือน</div>
+                    <button class="property-btn">ดูรายละเอียด</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>CH</h3>
+                <p>CHIANG MAI HOME</p>
+                <p style="font-size: 0.8em; margin-top: 0.5rem;">บริการอสังหาริมทรัพย์ครบวงจร</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>ติดต่อ</h3>
+                <a href="tel:0647929626">โทรศัพท์: 064-7929626</a>
+                <p>เชียงใหม่ ประเทศไทย</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>LINE</h3>
+                <div class="qr-placeholder">[QR Code]</div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Social Media</h3>
+                <a href="#">Facebook</a>
+                <a href="#">WhatsApp</a>
+                <a href="#">TikTok</a>
+                <div class="qr-placeholder">[QR Code]</div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2024 Chiang Mai Home Co., Ltd. ทุกสิทธิ์สงวน</p>
+        </div>
+    </div>
+
+    <script>
+        function openModal(type) {
+            const modalId = type + 'Modal';
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(type) {
+            const modalId = type + 'Modal';
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function toggleMap() {
+            const mapContainer = document.getElementById('mapContainer');
+            mapContainer.classList.toggle('active');
+        }
+
+        // Search functionality
+        document.querySelector('.search-btn').addEventListener('click', function() {
+            const searchText = document.querySelector('.search-input').value.toLowerCase();
+            const properties = document.querySelectorAll('.property-card');
+            
+            properties.forEach(property => {
+                const title = property.querySelector('.property-info h3').textContent.toLowerCase();
+                const location = property.querySelector('.property-location').textContent.toLowerCase();
+                
+                if (title.includes(searchText) || location.includes(searchText) || searchText === '') {
+                    property.style.display = 'block';
+                } else {
+                    property.style.display = 'none';
+                }
+            });
+        });
+
+        // Search on Enter key
+        document.querySelector('.search-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.querySelector('.search-btn').click();
+            }
+        });
+
+        // Close modal when clicking outside
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

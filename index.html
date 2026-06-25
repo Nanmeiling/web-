@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chiang Mai Home - บ้านขาย บ้านเช่า เชียงใหม่</title>
+    <style>
+        :root {
+            --navy: #1a2f47;
+            --gold: #b8956a;
+            --light-bg: #f5f3f0;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --border: #e5e7eb;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--light-bg); color: var(--text-dark); line-height: 1.6; font-size: 16px; }
+
+        /* CATEGORY MENU */
+        .category-menu { background: var(--light-bg); padding: 0.8rem 2rem; }
+        .category-links { display: flex; gap: 2rem; max-width: 1400px; margin: 0 auto; }
+        .category-links a { color: var(--text-dark); text-decoration: none; font-size: 0.85em; font-weight: 500; padding: 0.5rem 0; border-bottom: 2px solid transparent; transition: all 0.3s; white-space: nowrap; }
+        .category-links a:hover, .category-links a.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* HEADER */
+        .header { background: var(--light-bg); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
+        .logo-section { display: flex; align-items: center; gap: 0.5rem; }
+        .logo-icon { font-family: Georgia, serif; font-size: 2em; font-weight: 400; color: var(--navy); letter-spacing: -2px; }
+        .logo-text { font-size: 0.65em; letter-spacing: 2px; color: var(--navy); font-weight: 600; }
+        .header-nav { display: flex; gap: 2rem; flex: 1; justify-content: center; }
+        .header-nav a { color: var(--text-dark); text-decoration: none; font-size: 0.9em; padding: 0.5rem 0; border-bottom: 2px solid transparent; transition: all 0.3s; }
+        .header-nav a:hover, .header-nav a.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* HERO */
+        .hero { background: linear-gradient(135deg, var(--navy) 0%, #2a4457 100%); color: white; padding: 4rem 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: 1400px; margin: 0 auto; }
+        .hero-text h1 { font-size: 2.5em; font-weight: 700; margin-bottom: 1rem; line-height: 1.2; }
+        .hero-text p { font-size: 0.95em; opacity: 0.95; margin-bottom: 2rem; }
+        .hero-buttons { display: flex; gap: 1rem; }
+        .hero-btn { padding: 0.8rem 1.5rem; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9em; transition: all 0.3s; }
+        .hero-btn.primary { background: var(--navy); color: white; }
+        .hero-btn.secondary { background: var(--gold); color: var(--navy); }
+        .hero-btn:hover { transform: translateY(-2px); }
+        .hero-image { height: 400px; background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--text-light); font-size: 3em; }
+
+        /* SEARCH BOX */
+        .search-section { background: var(--navy); color: white; padding: 2rem; margin: -2rem 2rem 2rem; max-width: 1400px; margin-left: auto; margin-right: auto; border-radius: 8px; }
+        .search-tabs { display: flex; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.2); }
+        .search-tabs button { background: none; border: none; color: rgba(255,255,255,0.7); padding: 0.8rem 1rem; cursor: pointer; font-weight: 600; border-bottom: 2px solid transparent; transition: all 0.3s; }
+        .search-tabs button.active { color: var(--gold); border-bottom-color: var(--gold); }
+        .search-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; align-items: end; }
+        .search-input { display: flex; flex-direction: column; }
+        .search-input label { font-size: 0.85em; margin-bottom: 0.3rem; opacity: 0.8; }
+        .search-input input, .search-input select { padding: 0.6rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 4px; background: rgba(255,255,255,0.95); color: var(--text-dark); font-size: 0.9em; }
+        .search-btn { background: var(--gold); color: var(--navy); padding: 0.6rem 1.5rem; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
+        .search-btn:hover { background: #d4a574; }
+
+        /* FEATURES */
+        .features { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; padding: 3rem 2rem; max-width: 1400px; margin: 0 auto; }
+        .feature { text-align: center; }
+        .feature-icon { font-size: 2.5em; margin-bottom: 1rem; }
+        .feature h3 { font-size: 0.95em; margin-bottom: 0.5rem; color: var(--navy); }
+        .feature p { font-size: 0.85em; color: var(--text-light); }
+
+        /* PROPERTIES SECTION */
+        .properties-section { padding: 3rem 2rem; max-width: 1400px; margin: 0 auto; }
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+        .section-title { font-size: 1.6em; color: var(--navy); font-weight: 700; }
+        .view-more { color: var(--gold); text-decoration: none; font-size: 0.9em; }
+        .properties-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-bottom: 3rem; }
+        .property-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: all 0.3s; }
+        .property-card:hover { transform: translateY(-4px); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+        .property-image { height: 200px; background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%); position: relative; display: flex; align-items: center; justify-content: center; font-size: 2em; color: var(--text-light); }
+        .property-heart { position: absolute; top: 10px; right: 10px; font-size: 1.5em; cursor: pointer; }
+        .property-info { padding: 1rem; }
+        .property-title { font-size: 0.95em; font-weight: 600; color: var(--navy); margin-bottom: 0.3rem; }
+        .property-location { font-size: 0.8em; color: var(--text-light); margin-bottom: 0.5rem; }
+        .property-details { font-size: 0.8em; color: var(--text-light); margin-bottom: 0.5rem; }
+        .property-price { font-size: 1.05em; font-weight: 700; color: var(--gold); margin-bottom: 1rem; }
+        .property-btn { display: block; text-align: center; color: var(--gold); text-decoration: none; font-weight: 600; font-size: 0.9em; padding: 0.6rem; border: 1px solid var(--gold); border-radius: 4px; transition: all 0.3s; }
+        .property-btn:hover { background: var(--gold); color: white; }
+
+        /* ABOUT SECTION */
+        .about-section { background: white; padding: 3rem 2rem; max-width: 1400px; margin: 2rem auto; border-radius: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+        .about-image { height: 300px; background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 3em; color: var(--text-light); }
+        .about-content h2 { font-size: 1.4em; color: var(--navy); margin-bottom: 1rem; }
+        .about-content p { color: var(--text-dark); margin-bottom: 1rem; text-align: justify; line-height: 1.8; }
+        .about-content ul { list-style: none; margin: 1.5rem 0; }
+        .about-content li { padding-left: 1.5rem; margin-bottom: 0.5rem; position: relative; color: var(--text-dark); font-size: 0.95em; }
+        .about-content li:before { content: "●"; position: absolute; left: 0; color: var(--gold); }
+        .about-btn { background: var(--navy); color: white; padding: 0.8rem 1.5rem; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.3s; margin-top: 1rem; }
+        .about-btn:hover { background: var(--gold); color: var(--navy); }
+
+        /* FOOTER */
+        .footer { background: var(--navy); color: white; padding: 3rem 2rem; margin-top: 3rem; }
+        .footer-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-bottom: 2rem; }
+        .footer-section h3 { color: var(--gold); margin-bottom: 1rem; font-size: 0.95em; }
+        .footer-section p { font-size: 0.9em; color: rgba(255,255,255,0.8); margin-bottom: 0.5rem; }
+        .qr-placeholder { width: 100px; height: 100px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.75em; color: rgba(255,255,255,0.5); margin-top: 1rem; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 2rem; text-align: center; font-size: 0.85em; color: rgba(255,255,255,0.6); }
+
+        @media (max-width: 768px) {
+            .hero { grid-template-columns: 1fr; }
+            .search-grid { grid-template-columns: 1fr; }
+            .properties-grid { grid-template-columns: 1fr; }
+            .features { grid-template-columns: 1fr 1fr; }
+            .about-section { grid-template-columns: 1fr; }
+            .footer-container { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- CATEGORY MENU -->
+    <div class="category-menu">
+        <div class="category-links">
+            <a href="#" class="active">หน้าแรก</a>
+            <a href="properties-buy.html">ซื้อ</a>
+            <a href="properties-rent.html">เช่า</a>
+            <a href="consignment-sell-service.html">ฝากขาย</a>
+            <a href="consignment-rent-service.html">ฝากเช่า</a>
+            <a href="pawn-service.html">ขายฝาก</a>
+            <a href="design-service.html">รับออกแบบตกแต่ง</a>
+            <a href="about-us.html">เกี่ยวกับเรา</a>
+            <a href="contact-us.html">ติดต่อเรา</a>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo-section">
+            <div class="logo-icon">CH</div>
+            <div class="logo-text">CHIANGMAI HOME</div>
+        </div>
+        <div style="font-weight: 600;">064-7929626</div>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-text">
+            <h1>ฝากขาย ฝากเช่า บ้าน คอนโด ที่ดิน ในเชียงใหม่</h1>
+            <p>ที่มีประสบการณ์อสังหาริมทรัพย์ ดูแลครบวงจร ประเมินราคา เล่นตลาด ไม่เสียค่าดำเนิน และปรึกษาฟรี</p>
+            <div class="hero-buttons">
+                <button class="hero-btn primary">🏠 ฝากขายบ้าน</button>
+                <button class="hero-btn secondary">🔍 ฝากเช่าบ้าน</button>
+            </div>
+        </div>
+        <div class="hero-image">🏡</div>
+    </div>
+
+    <!-- SEARCH BOX -->
+    <div class="search-section">
+        <div class="search-grid">
+            <div class="search-input">
+                <label>ค้นหา</label>
+                <input type="text" placeholder="เชียงใหม่">
+            </div>
+            <div class="search-input">
+                <label>ประเภท</label>
+                <select>
+                    <option>บ้านเดี่ยว</option>
+                </select>
+            </div>
+            <div class="search-input">
+                <label>ราคาประมาณ</label>
+                <select>
+                    <option>1-5 ล้านบาท</option>
+                </select>
+            </div>
+            <button class="search-btn">🔍 ค้นหา</button>
+        </div>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="features">
+        <div class="feature">
+            <div class="feature-icon">🏠</div>
+            <h3>ฝากขายบ้าน ประเมินราคาฟรี</h3>
+            <p>ออกแบบการขาย สำหรับคุณ</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">📷</div>
+            <h3>ถ่ายภาพอสังหาริมทรัพย์ เพื่อโฆษณาจริง</h3>
+            <p></p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">📢</div>
+            <h3>การตลาดออนไลน์ Google Facebook สำหรับขาย</h3>
+            <p></p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">🤝</div>
+            <h3>คนอสังหา โครงนิเทศกิจการสำเร็จ</h3>
+            <p></p>
+        </div>
+    </div>
+
+    <!-- PROPERTIES - BUY -->
+    <div class="properties-section">
+        <div class="section-header">
+            <h2 class="section-title">บ้านขาย</h2>
+            <a href="properties-buy.html" class="view-more">ดูเพิ่มเติม →</a>
+        </div>
+        <div class="properties-grid">
+            <div class="property-card">
+                <div class="property-image">
+                    <span class="property-heart">🤍</span>
+                </div>
+                <div class="property-info">
+                    <div class="property-title">บ้านสัทนิวร์วาศ Modern Luxury</div>
+                    <div class="property-location">🏘️ สันติทักษิณ, เชียงใหม่</div>
+                    <div class="property-details">🛏️ 4 ห้องนอน  |  4 ห้องน้ำ  |  280 ตร.ม.</div>
+                    <div class="property-price">฿12,900,000</div>
+                    <a href="#" class="property-btn">ดูรายละเอียด</a>
+                </div>
+            </div>
+            <div class="property-card">
+                <div class="property-image">
+                    <span class="property-heart">🤍</span>
+                </div>
+                <div class="property-info">
+                    <div class="property-title">บ้านสัตยารี ไลฟ์สตไทล์</div>
+                    <div class="property-location">🏘️ โชคชัย, เชียงใหม่</div>
+                    <div class="property-details">🛏️ 3 ห้องนอน  |  3 ห้องน้ำ  |  180 ตร.ม.</div>
+                    <div class="property-price">฿6,900,000</div>
+                    <a href="#" class="property-btn">ดูรายละเอียด</a>
+                </div>
+            </div>
+            <div class="property-card">
+                <div class="property-image">
+                    <span class="property-heart">🤍</span>
+                </div>
+                <div class="property-info">
+                    <div class="property-title">บ้าน 3 ชั้น สไตล์นิวแม่น</div>
+                    <div class="property-location">🏘️ ซ้อนสม, เชียงใหม่</div>
+                    <div class="property-details">🛏️ 3 ห้องนอน  |  4 ห้องน้ำ  |  180 ตร.ม.</div>
+                    <div class="property-price">฿9,900,000</div>
+                    <a href="#" class="property-btn">ดูรายละเอียด</a>
+                </div>
+            </div>
+            <div class="property-card">
+                <div class="property-image">
+                    <span class="property-heart">🤍</span>
+                </div>
+                <div class="property-info">
+                    <div class="property-title">คอนโดหรูย วิวเมือง</div>
+                    <div class="property-location">🏘️ เชียงใหม่ใจกลาง, เชียงใหม่</div>
+                    <div class="property-details">🛏️ 2 ห้องนอน  |  2 ห้องน้ำ  |  75 ตร.ม.</div>
+                    <div class="property-price">฿4,890,000</div>
+                    <a href="#" class="property-btn">ดูรายละเอียด</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROPERTIES - RENT -->
+    <div class="properties-section">
+        <div class="section-header">
+            <h2 class="section-title">บ้านเช่า</h2>
+            <a href="properties-rent.html" class="view-more">ดูเพิ่มเติม →</a>
+        </div>
+        <div class="properties-grid">
+            <div class="property-card">
+                <div class="property-image">
+                    <span class="property-heart">🤍</span>
+                </div>
+                <div class="property-info">
+                    <div class="property-title">บ้านสัทนิวร์วาศยกูณ</div>
+                    <div class="property-location">🏘️ สันติทักษิณ, เชียงใหม่</div>
+                    <div class="property-details">🛏️ 4 ห้องนอน  |  4 ห้องน้ำ  |  280 ตร.ม.</div>
+                    <div class="property-price">฿45,000 / เดือน</div>
+                    <a href="#" class="property-btn">ดูรายละเอียด</a>
+                </div>
+            </div>
+            <div class="property-card">
+                <div class="property-image">
+                    <span class="property-heart">🤍</span>
+                </div>
+                <div class="property-info">
+                    <div class="property-title">บ้านสัตยารี วิวแนวหญ้านอก</div>
+                    <div class="property-location">🏘️ โชคชัย, เชียงใหม่</div>
+                    <div class="property-details">🛏️ 3 ห้องนอน  |  3 ห้องน้ำ  |  150 ตร.ม.</div>
+                    <div class="property-price">฿25,000 / เดือน</div>
+                    <a href="#" class="property-btn">ดูรายละเอียด</a>
+                </div>
+            </div>
+            <div class="property-card">
+                <div class="property-image">
+                    <span class="property-heart">🤍</span>
+                </div>
+                <div class="property-info">
+                    <div class="property-title">คอนโด 2 ห้องนอน</div>
+                    <div class="property-location">🏘️ ซ้อนสม, เชียงใหม่</div>
+                    <div class="property-details">🛏️ 2 ห้องนอน  |  2 ห้องน้ำ  |  65 ตร.ม.</div>
+                    <div class="property-price">฿25,000 / เดือน</div>
+                    <a href="#" class="property-btn">ดูรายละเอียด</a>
+                </div>
+            </div>
+            <div class="property-card">
+                <div class="property-image">
+                    <span class="property-heart">🤍</span>
+                </div>
+                <div class="property-info">
+                    <div class="property-title">คอนโดหรูย วิวเมือง</div>
+                    <div class="property-location">🏘️ เชียงใหม่ใจกลาง, เชียงใหม่</div>
+                    <div class="property-details">🛏️ 1 ห้องนอน  |  1 ห้องน้ำ  |  50 ตร.ม.</div>
+                    <div class="property-price">฿18,000 / เดือน</div>
+                    <a href="#" class="property-btn">ดูรายละเอียด</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT - BROKER INFO -->
+    <div style="background: white; padding: 4rem 2rem; max-width: 1400px; margin: 2rem auto; border-radius: 8px;">
+        <div style="max-width: 900px; margin: 0 auto;">
+            <h2 style="color: var(--navy); font-size: 1.6em; margin-bottom: 1.5rem; font-weight: 700;">บริการนายหน้ารับฝากขายและเช่าบ้าน — ทีมงานมืออาชีพที่คุณวางใจได้</h2>
+            
+            <p style="color: var(--text-dark); margin-bottom: 1.5rem; text-align: justify; line-height: 1.8;">การซื้อ ขาย หรือเช่าอสังหาริมทรัพย์ คือการตัดสินใจครั้งสำคัญที่ผูกพันกับเงินก้อนใหญ่ที่สุดในชีวิตของหลายคน การเลือกนายหน้าที่มีประสบการณ์จริงและทำงานอย่างโปร่งใส จึงเป็นจุดเริ่มต้นที่ทำให้ทุกอย่างราบรื่นตั้งแต่ต้นจนปิดการขาย</p>
+
+            <p style="color: var(--text-dark); margin-bottom: 1.5rem; text-align: justify; line-height: 1.8;">เราคือทีมนายหน้าอสังหาริมทรัพย์มืออาชีพ ที่ให้บริการรับดูแลการขายและปล่อยเช่าบ้านมาอย่างต่อเนื่อง ด้วยฐานทรัพย์สินคุณภาพจำนวนมากและเครือข่ายผู้ซื้อ–ผู้เช่าที่กว้างขวาง เราพร้อมเป็นตัวกลางที่ทำให้ทั้งเจ้าของทรัพย์และผู้กำลังมองหาบ้าน ได้สิ่งที่ต้องการอย่างคุ้มค่าที่สุด</p>
+
+            <h3 style="color: var(--navy); font-size: 1.2em; margin-top: 2rem; margin-bottom: 1rem; font-weight: 700;">รับฝากขายบ้าน — บริหารการขายให้ครบทุกขั้นตอน</h3>
+            
+            <p style="color: var(--text-dark); margin-bottom: 1.5rem; text-align: justify; line-height: 1.8;">นายหน้าที่ดีไม่ได้ทำหน้าที่เพียง "หาคนซื้อ" แต่บริหารการขายทั้งกระบวนการ ตั้งแต่ประเมินราคาตามสภาพตลาดจริง จัดเตรียมเอกสาร ถ่ายภาพและทำสื่อโฆษณา คัดกรองผู้ซื้อที่มีกำลังซื้อจริง ไปจนถึงการเจรจาต่อรองและประสานงานโอนกรรมสิทธิ์ที่สำนักงานที่ดิน</p>
+
+            <p style="color: var(--text-dark); margin-bottom: 1.5rem; text-align: justify; line-height: 1.8;">เมื่อคุณฝากขายกับเรา ทรัพย์ของคุณจะถูกนำเสนอผ่านช่องทางการตลาดที่ครอบคลุม ทั้งเว็บไซต์อสังหาริมทรัพย์ชั้นนำ โซเชียลมีเดีย และเครือข่ายนายหน้า เพื่อเข้าถึงผู้ซื้อได้มากที่สุดในเวลาที่สั้นที่สุด เราตั้งราคาที่ "ขายได้จริงและยุติธรรม" ไม่สูงเกินจริงจนขายไม่ออก และไม่กดราคาจนเจ้าของเสียประโยชน์</p>
+
+            <h3 style="color: var(--navy); font-size: 1.2em; margin-top: 2rem; margin-bottom: 1rem; font-weight: 700;">รับปล่อยเช่า — หาผู้เช่าคุณภาพให้คุณ</h3>
+            
+            <p style="color: var(--text-dark); margin-bottom: 1.5rem; text-align: justify; line-height: 1.8;">สำหรับเจ้าของที่ต้องการสร้างรายได้จากอสังหาฯ อย่างต่อเนื่อง เรารับปล่อยเช่าบ้านและคอนโด คัดกรองผู้เช่าอย่างรอบคอบ ทำสัญญาเช่าที่รัดกุม และดูแลประสานงานระหว่างผู้เช่ากับเจ้าของ เพื่อให้คุณปล่อยเช่าได้อย่างสบายใจ ไม่ต้องกังวลเรื่องผู้เช่าที่ไม่มีคุณภาพหรือปัญหาในภายหลัง</p>
+
+            <h3 style="color: var(--navy); font-size: 1.2em; margin-top: 2rem; margin-bottom: 1rem; font-weight: 700;">ทำไมต้องเลือกทีมงานของเรา</h3>
+            
+            <p style="color: var(--text-dark); margin-bottom: 0.5rem;"><strong style="color: var(--gold);">ประสบการณ์จริงในตลาด</strong> — เรารู้จักทำเล รู้ราคาตลาดในแต่ละย่าน และเข้าใจพฤติกรรมของผู้ซื้อ ทำให้วางกลยุทธ์การขายได้แม่นยำ</p>
+
+            <p style="color: var(--text-dark); margin-bottom: 0.5rem;"><strong style="color: var(--gold);">ฐานทรัพย์และเครือข่ายกว้าง</strong> — ด้วยบ้านขายและเช่าจำนวนมากในมือ ทรัพย์ของคุณจึงเข้าถึงผู้ซื้อได้เร็วและกว้างกว่าการประกาศเอง</p>
+
+            <p style="color: var(--text-dark); margin-bottom: 0.5rem;"><strong style="color: var(--gold);">โปร่งใสทุกขั้นตอน</strong> — เราชี้แจงค่าใช้จ่าย ค่าคอมมิชชั่น และเงื่อนไขอย่างชัดเจนตั้งแต่ต้น ไม่มีค่าใช้จ่ายแอบแฝง</p>
+
+            <p style="color: var(--text-dark); margin-bottom: 1.5rem;"><strong style="color: var(--gold);">ดูแลถึงวันโอน</strong> — งานของเราไม่จบแค่หาคนซื้อได้ แต่เราอยู่เคียงข้างคุณจนถึงวันโอนกรรมสิทธิ์ จัดการเอกสาร ภาษี และค่าธรรมเนียมให้เรียบร้อย</p>
+
+            <h3 style="color: var(--navy); font-size: 1.2em; margin-top: 2rem; margin-bottom: 1rem; font-weight: 700;">เริ่มต้นกับเราได้ง่าย ๆ</h3>
+            
+            <p style="color: var(--text-dark); margin-bottom: 1.5rem; text-align: justify; line-height: 1.8;">เพียงติดต่อทีมงานพร้อมรายละเอียดเบื้องต้นของทรัพย์ เราจะนัดประเมินสถานที่จริง แนะนำราคาที่เหมาะสม และกระจายทรัพย์สู่ตลาดทันที พร้อมรายงานความคืบหน้าจนปิดการขายสำเร็จ</p>
+
+            <p style="color: var(--text-dark); text-align: justify; line-height: 1.8;">ไม่ว่าคุณต้องการฝากขายทรัพย์ ปล่อยเช่าให้ได้ผู้เช่าคุณภาพ หรือกำลังตามหาบ้านสักหลังที่ใช่ ทีมงานมืออาชีพของเราพร้อมดูแลคุณอย่างเต็มที่ ด้วยความซื่อสัตย์และประสบการณ์ที่สั่งสมมายาวนาน <strong>ติดต่อเราวันนี้</strong> เพื่อให้ทุกการซื้อ ขาย และเช่า เป็นเรื่องที่ราบรื่นและน่าประทับใจ</p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>CH</h3>
+                <p>CHIANGMAI HOME</p>
+                <p style="font-size: 0.8em; margin-top: 0.3rem;">บริการอสังหาริมทรัพย์ครบวงจร</p>
+            </div>
+            <div class="footer-section">
+                <h3>ติดต่อ</h3>
+                <p>โทรศัพท์: 064-7929626</p>
+                <p>45/1 ถ.เชียงใหม่-ลำปาง</p>
+                <p style="font-size: 0.85em;">หมู่บ้านสนสวย ต.ช้างเผือก</p>
+                <p style="font-size: 0.85em;">เมือง เชียงใหม่ 50300</p>
+            </div>
+            <div class="footer-section">
+                <h3>LINE</h3>
+                <div class="qr-placeholder">[QR Code]</div>
+            </div>
+            <div class="footer-section">
+                <h3>Social Media</h3>
+                <p>Facebook: Chiangmai Home</p>
+                <p>TikTok: Chiangmai Home</p>
+                <div class="qr-placeholder" style="margin-top: 0.5rem;">[QR Code]</div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Chiangmai Home Co., Ltd. ทุกสิทธิ์สงวน</p>
+        </div>
+    </div>
+</body>
+</html>
