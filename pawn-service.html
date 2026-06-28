@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ขายฝาก - Chiang Mai Home</title>
+    <style>
+        :root {
+            --navy: #1a2f47;
+            --gold: #b8956a;
+            --white: #ffffff;
+            --bg: #f9fafb;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --border: #e5e7eb;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f3f0; color: var(--text-dark); line-height: 1.6; font-size: 16px; }
+
+        .category-menu { background: #f5f3f0; padding: 0.8rem 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.03); }
+        .category-links { display: flex; gap: 2rem; list-style: none; max-width: 1400px; margin: 0 auto; flex-wrap: wrap; }
+        .category-links a { color: var(--text-dark); text-decoration: none; font-size: 0.85em; font-weight: 500; padding: 0.5rem 0; border-bottom: 2px solid transparent; transition: all 0.3s; white-space: nowrap; }
+        .category-links a:hover, .category-links a.active { color: var(--navy); border-bottom-color: var(--navy); }
+
+        .header { background: #f5f3f0; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); position: sticky; top: 40px; z-index: 100; }
+        .logo-section { display: flex; align-items: center; gap: 1rem; }
+        .logo-icon { font-family: Georgia, serif; font-size: 1.8em; font-weight: 700; color: var(--navy); }
+        .logo-text h1 { font-size: 0.8em; letter-spacing: 2px; color: var(--navy); font-weight: 600; }
+        .phone { color: var(--text-dark); font-weight: 600; font-size: 0.95em; }
+
+        .hero { background: linear-gradient(135deg, var(--navy) 0%, #2a4457 100%); color: var(--white); padding: 2rem; text-align: center; }
+        .hero h1 { font-size: 2em; margin-bottom: 0.5rem; font-weight: 700; }
+        .hero p { font-size: 0.95em; opacity: 0.95; }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+        .section-title { font-size: 1.6em; color: var(--navy); font-weight: 700; margin-bottom: 1.5rem; margin-top: 2rem; }
+
+        .form-section { background: #f5f3f0; padding: 2rem; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 2rem; }
+        .form-section h3 { color: var(--navy); margin-bottom: 1.5rem; font-size: 1.2em; }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { margin-bottom: 0.5rem; color: var(--navy); font-weight: 600; font-size: 0.95em; }
+        .form-group input, .form-group select, .form-group textarea { padding: 0.8rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.95em; font-family: inherit; transition: all 0.3s; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184, 149, 106, 0.1); }
+        .form-group textarea { resize: vertical; min-height: 80px; grid-column: 1 / -1; }
+        .required { color: #ef4444; }
+
+        .calc-section { background: #f0f8ff; padding: 2rem; border-radius: 8px; border-left: 4px solid var(--gold); margin-bottom: 2rem; }
+        .calc-section h3 { color: var(--navy); margin-bottom: 1rem; font-size: 1.1em; }
+        .calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+        .calc-result { background: #f5f3f0; padding: 1rem; border-radius: 6px; border: 1px solid var(--border); }
+        .calc-result-label { color: var(--text-light); font-size: 0.9em; margin-bottom: 0.3rem; }
+        .calc-result-value { font-size: 1.5em; color: var(--gold); font-weight: 700; }
+
+        .image-upload-section { background: #f5f3f0; padding: 2rem; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 2rem; }
+        .image-upload-section h3 { color: var(--navy); margin-bottom: 1rem; font-size: 1.2em; }
+        .upload-warning { background: #fef3c7; color: #92400e; padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem; border-left: 4px solid #f59e0b; }
+
+        .image-box { margin-bottom: 2rem; padding: 1.5rem; border: 2px solid var(--gold); border-radius: 8px; background: rgba(184, 149, 106, 0.05); }
+        .image-box h4 { color: var(--navy); margin-bottom: 0.5rem; font-size: 1.05em; }
+        .image-box .hint { color: var(--text-light); font-size: 0.9em; margin-bottom: 1rem; line-height: 1.5; }
+        .image-box input[type="file"] { width: 100%; padding: 10px; border: 2px dashed var(--gold); border-radius: 6px; cursor: pointer; background: #f5f3f0; margin-bottom: 1rem; }
+        .image-example { background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%); padding: 1rem; border-radius: 6px; text-align: center; color: var(--text-light); font-size: 0.9em; }
+
+        .submit-btn { background: var(--navy); color: var(--white); padding: 1rem 2rem; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 1em; transition: all 0.3s; width: 100%; margin-top: 1rem; }
+        .submit-btn:hover { background: var(--gold); color: var(--navy); transform: translateY(-2px); }
+
+        .article-section { background: #f5f3f0; padding: 2rem; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 2rem; }
+        .article-section h2 { color: var(--navy); font-size: 1.6em; margin-bottom: 1rem; margin-top: 0; }
+        .article-section h3 { color: var(--navy); font-size: 1.2em; margin-top: 1.5rem; margin-bottom: 0.8rem; }
+        .article-section p { color: var(--text-dark); margin-bottom: 1rem; text-align: justify; line-height: 1.7; font-size: 0.95em; }
+
+        .footer { background: var(--navy); color: var(--white); padding: 3rem 2rem; margin-top: 3rem; }
+        .footer-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-bottom: 2rem; }
+        .footer-section h3 { color: var(--gold); margin-bottom: 1rem; font-size: 1em; }
+        .footer-section p, .footer-section a { font-size: 0.9em; color: rgba(255,255,255,0.8); text-decoration: none; display: block; margin-bottom: 0.5rem; }
+        .footer-section a:hover { color: var(--gold); }
+        .qr-placeholder { width: 120px; height: 120px; background: rgba(255,255,255,0.1); border-radius: 8px; margin-top: 1rem; border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 0.85em; color: rgba(255,255,255,0.5); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 2rem; text-align: center; font-size: 0.85em; color: rgba(255,255,255,0.6); max-width: 1400px; margin: 0 auto; }
+
+        @media (max-width: 768px) {
+            .footer-container { grid-template-columns: 1fr; }
+            .form-grid { grid-template-columns: 1fr; }
+            .category-links { gap: 1rem; }
+            .category-links a { font-size: 0.75em; }
+            .calc-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER WITH MENU -->
+    <!-- HEADER WITH MENU -->
+    <style>
+        @media (max-width: 768px) {
+            .header-responsive { flex-direction: column; padding: 0.5rem 1rem !important; gap: 0.5rem !important; }
+            .menu-responsive { gap: 0.5rem !important; font-size: 0.75em !important; }
+            .logo-responsive { height: 60px !important; }
+            .phone-responsive { font-size: 0.85em !important; }
+        }
+    </style>
+    <div class="header-responsive" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: #f5f3f0; gap: 1rem; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.05);"><img src="https://files.catbox.moe/i9mnyx.png" alt="Chiangmai Home Logo" class="logo-responsive" style="height: 120px; object-fit: contain; flex-shrink: 0;"><ul class="menu-responsive" style="display: flex; gap: 1.5rem; flex: 1; justify-content: center; margin: 0; list-style: none; padding: 0; flex-wrap: wrap;"><li><a href="index.html" style="color: #333; text-decoration: none; font-size: 0.9em; font-weight: 500; white-space: nowrap;">หน้าแรก</a></li><li><a href="properties-buy.html" style="color: #333; text-decoration: none; font-size: 0.9em; font-weight: 500; white-space: nowrap;">ซื้อ</a></li><li><a href="properties-rent.html" style="color: #333; text-decoration: none; font-size: 0.9em; font-weight: 500; white-space: nowrap;">เช่า</a></li><li><a href="consignment-sell-service.html" style="color: #333; text-decoration: none; font-size: 0.9em; font-weight: 500; white-space: nowrap;">ฝากขาย</a></li><li><a href="consignment-rent-service.html" style="color: #333; text-decoration: none; font-size: 0.9em; font-weight: 500; white-space: nowrap;">ฝากเช่า</a></li><li><a href="pawn-service.html" style="color: #b8956a; text-decoration: none; font-size: 0.9em; font-weight: 500; border-bottom: 2px solid #b8956a; white-space: nowrap;">ขายฝาก</a></li><li><a href="design-service.html" style="color: #333; text-decoration: none; font-size: 0.9em; font-weight: 500; white-space: nowrap;">ออกแบบ</a></li><li><a href="about-us.html" style="color: #333; text-decoration: none; font-size: 0.9em; font-weight: 500; white-space: nowrap;">เกี่ยวกับ</a></li><li><a href="contact-us.html" style="color: #333; text-decoration: none; font-size: 0.9em; font-weight: 500; white-space: nowrap;">ติดต่อ</a></li></ul><span class="phone-responsive" style="font-weight: 600; white-space: nowrap; flex-shrink: 0;">064-7929626</span></div>
+
+    <div class="hero">
+        <h1>ขายฝากทรัพย์สิน</h1>
+        <p>เอาเอกสารทรัพย์สินมาฝาก รับเงินสด พร้อมคำนวนดอกเบี้ยที่เหมาะสม</p>
+    </div>
+
+    <div class="container">
+        <div class="form-section">
+            <h3>ข้อมูลเจ้าของและทรัพย์สิน</h3>
+            <div class="form-grid">
+                <div class="form-group"><label>ชื่อ-นามสกุล <span class="required">*</span></label><input type="text" placeholder="ชื่อของคุณ" required></div>
+                <div class="form-group"><label>เบอร์โทรศัพท์ <span class="required">*</span></label><input type="tel" placeholder="064-xxxx-xxxx" required></div>
+                <div class="form-group"><label>EMAIL</label><input type="email" placeholder="example@email.com"></div>
+                <div class="form-group"><label>LINE ID</label><input type="text" placeholder="your-line-id"></div>
+                <div class="form-group"><label>ชื่อทรัพย์สิน <span class="required">*</span></label><input type="text" placeholder="เช่น บ้านเดี่ยว" required></div>
+                <div class="form-group"><label>ประเภท <span class="required">*</span></label><select required><option value="">-- เลือกประเภท --</option><option>บ้านเดี่ยว</option><option>บ้านแฝด</option><option>ทาวน์เฮาส์</option><option>คอนโด</option><option>วิลล่า</option><option>อพาร์ทเมนท์</option><option>สำนักงาน</option><option>โกดัง-โรงงาน</option><option>อาคารพานิชย์</option><option>ที่ดิน</option></select></div>
+                <div class="form-group"><label>ที่อยู่อย่างละเอียด <span class="required">*</span></label><textarea placeholder="บ้านเลขที่ ถนน ซอย ตำบล อำเภอ จังหวัด" required></textarea></div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>คำนวนดอกเบี้ย</h3>
+            <div class="calc-grid">
+                <div class="form-group">
+                    <label>ยอดเงินที่ขอยืม (บาท) <span class="required">*</span></label>
+                    <input type="number" id="loanAmount" placeholder="500000" value="500000" oninput="calculateInterest()">
+                </div>
+                <div class="form-group">
+                    <label>อัตราดอกเบี้ย (%) <span class="required">*</span></label>
+                    <input type="number" id="interestRate" placeholder="1.25" value="1.25" step="0.01" oninput="calculateInterest()">
+                </div>
+                <div class="form-group">
+                    <label>ระยะเวลา</label>
+                    <select id="timePeriod" onchange="calculateInterest()">
+                        <option value="month">เดือน</option>
+                        <option value="year">ปี</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>จำนวน <span class="required">*</span></label>
+                    <input type="number" id="duration" placeholder="6" value="6" min="1" oninput="calculateInterest()">
+                </div>
+            </div>
+
+            <div class="calc-grid" style="margin-top: 1.5rem;">
+                <div class="calc-result">
+                    <div class="calc-result-label">ยอดเงินต้น</div>
+                    <div class="calc-result-value" id="principalDisplay">฿500,000</div>
+                </div>
+                <div class="calc-result">
+                    <div class="calc-result-label">ดอกเบี้ยที่ต้องจ่าย</div>
+                    <div class="calc-result-value" id="interestDisplay">฿37,500</div>
+                </div>
+                <div class="calc-result">
+                    <div class="calc-result-label">รวมทั้งสิ้น</div>
+                    <div class="calc-result-value" id="totalDisplay">฿537,500</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="image-upload-section">
+            <h3>เอกสารทรัพย์สิน (โฉนด / สัญญาจดทะเบียน) <span class="required">*</span></h3>
+            <div class="upload-warning">ต้องชัดเจนพอที่ประเมินค่าทรัพย์สินได้ เพื่อให้เราประเมินราคาเบื้องต้น</div>
+            <div class="image-box">
+                <h4>หน้าเอกสาร <span class="required">*</span></h4>
+                <div class="hint">รูปหน้าของโฉนดหรือสัญญาจดทะเบียน</div>
+                <input type="file" accept="image/*" required>
+                <div class="image-example">[อัพโหลดรูปหน้าเอกสาร]</div>
+            </div>
+            <div class="image-box">
+                <h4>หลังเอกสาร <span class="required">*</span></h4>
+                <div class="hint">รูปหลังของโฉนดหรือสัญญาจดทะเบียน</div>
+                <input type="file" accept="image/*" required>
+                <div class="image-example">[อัพโหลดรูปหลังเอกสาร]</div>
+            </div>
+        </div>
+
+        <div class="image-upload-section">
+            <h3>รูปถ่ายอสังหาริมทรัพย์ <span class="required">*</span></h3>
+            <div class="upload-warning">รูปภาพต้องชัดเจน ไม่เบลอ มีแสงเพียงพอ ส่งอย่างน้อย 8-10 รูป</div>
+            <div class="image-box">
+                <h4>หน้าบ้าน (ด้านนอก นอกรั้ว เห็นถนน) <span class="required">*</span></h4>
+                <div class="hint">ถ่ายให้เห็นการจราจร เลขที่บ้าน หรือทำเครื่องหมายชัดเจน</div>
+                <input type="file" accept="image/*" multiple required>
+                <div class="image-example">[ตัวอย่างรูปหน้าบ้านติดถนน]</div>
+            </div>
+            <div class="image-box">
+                <h4>ภาพถ่ายอสังหาริมทรัพย์</h4>
+                <div class="hint">ถ่ายรายละเอียดต่างๆ ของทรัพย์สิน เช่น ห้องนอน ห้องครัว ห้องน้ำ บริเวณนอก</div>
+                <input type="file" accept="image/*" multiple>
+                <div class="image-example">[ตัวอย่างรูปอสังหาริมทรัพย์]</div>
+            </div>
+            <button class="submit-btn">ส่งข้อมูลขายฝาก</button>
+        </div>
+
+        <!-- ARTICLE SECTION -->
+        <div class="article-section">
+            <h2>รับขายฝากบ้าน ที่ดิน คอนโด อาคารพาณิชย์ — ได้เงินเร็ว ปลอดภัย วงเงินสูง</h2>
+
+            <p>เมื่อต้องการเงินก้อนใหญ่อย่างเร่งด่วน แต่ไม่อยากขายทรัพย์ทิ้งไปอย่างถาวร "การขายฝาก" คือทางออกที่หลายคนเลือกใช้ เพราะได้เงินเร็ว ใช้เอกสารน้อย ไม่ต้องมีคนค้ำ และยังมีสิทธิ์ไถ่ทรัพย์คืนได้ตามกำหนด เราคือผู้ให้บริการรับขายฝากที่เน้นความโปร่งใส ปลอดภัย และดูแลลูกค้าอย่างเป็นธรรมตามกฎหมายทุกขั้นตอน</p>
+
+            <h3>ขายฝากคืออะไร</h3>
+            <p>ขายฝาก คือการทำสัญญาซื้อขายทรัพย์สินรูปแบบหนึ่งตามประมวลกฎหมายแพ่งและพาณิชย์ โดยผู้ขายฝากโอนกรรมสิทธิ์ทรัพย์ให้ผู้รับซื้อฝากเพื่อแลกกับเงินก้อน แต่ยังคงมี "สิทธิ์ไถ่คืน" ทรัพย์นั้นได้ภายในระยะเวลาที่ตกลงกันไว้ในสัญญา เมื่อนำเงินต้นพร้อมผลประโยชน์ตอบแทนมาชำระครบ ทรัพย์ก็กลับมาเป็นของผู้ขายฝากเช่นเดิม</p>
+            <p>พูดง่าย ๆ คือคุณยังมีโอกาสได้บ้านหรือที่ดินคืน ต่างจากการขายขาดที่จบลงทันที ทำให้ขายฝากเป็นทางเลือกของคนที่ต้องการสภาพคล่องชั่วคราว แต่ไม่ต้องการสูญเสียทรัพย์ที่รักไปตลอดกาล</p>
+
+            <h3>ขายฝากที่ดิน เหมาะกับใคร</h3>
+            <p>การขายฝากที่ดินเหมาะกับผู้ที่ต้องการเงินทุนหมุนเวียนเร่งด่วน เช่น นำไปขยายกิจการ ชำระหนี้ก้อนอื่น หรือใช้จ่ายในยามจำเป็น โดยเฉพาะผู้ที่ไม่สามารถกู้ผ่านสถาบันการเงินทั่วไปได้ เพราะติดเงื่อนไขเรื่องเอกสารหรือประวัติเครดิต</p>
+            <p>เรารับขายฝากทรัพย์หลากหลายประเภท ทั้งบ้าน ที่ดินเปล่า ที่ดินพร้อมสิ่งปลูกสร้าง คอนโดมิเนียม และอาคารพาณิชย์ จุดเด่นของบริการเราคือ ไม่ใช้คนค้ำประกัน ไม่เช็คเครดิตบูโร อนุมัติง่าย และให้วงเงินสูง ตามมูลค่าจริงของทรัพย์ ทำให้คุณเข้าถึงเงินก้อนได้รวดเร็วกว่าการกู้แบบเดิม</p>
+
+            <h3>ค่าธรรมเนียมขายฝาก มีอะไรบ้าง</h3>
+            <p>ความโปร่งใสเรื่องค่าใช้จ่ายคือสิ่งที่เราให้ความสำคัญที่สุด การจดทะเบียนขายฝากที่ดินที่สำนักงานที่ดินจะมีค่าธรรมเนียมและภาษีตามที่กฎหมายกำหนด เช่น ค่าธรรมเนียมการจดทะเบียน ภาษีเงินได้หัก ณ ที่จ่าย อากรแสตมป์ และค่าใช้จ่ายในการทำนิติกรรม</p>
+            <p>เราชี้แจงค่าใช้จ่ายทุกรายการให้ชัดเจนตั้งแต่ก่อนทำสัญญา ไม่มีค่าใช้จ่ายแอบแฝง และดำเนินการทุกขั้นตอนต่อหน้าเจ้าหน้าที่ที่สำนักงานที่ดินอย่างถูกต้องตามกฎหมาย เพื่อให้คุณมั่นใจได้ในทุกบาททุกสตางค์</p>
+
+            <h3>ขายฝากที่ไหนดี — เลือกผู้ให้บริการที่ไว้ใจได้</h3>
+            <p>เรื่องเงินและทรัพย์สิน ความน่าเชื่อถือคือสิ่งสำคัญที่สุด ผู้ให้บริการขายฝากที่ดีต้องทำสัญญาเป็นธรรม ระบุเงื่อนไขไถ่ถอนชัดเจน ผลประโยชน์ตอบแทนเป็นไปตามที่กฎหมายกำหนด และไม่มีเงื่อนไขแอบแฝงที่ทำให้ผู้ขายฝากเสียเปรียบ</p>
+            <p>เราดำเนินงานด้วยทีมงานที่มีประสบการณ์ เข้าใจขั้นตอนทางกฎหมายอย่างละเอียด ให้คำปรึกษาอย่างตรงไปตรงมา และดูแลลูกค้าตั้งแต่ประเมินราคาทรัพย์ จัดเตรียมเอกสาร ไปจนถึงวันจดทะเบียนที่สำนักงานที่ดิน ทุกขั้นตอนปลอดภัย โปร่งใส และตรวจสอบได้</p>
+
+            <h3>ขั้นตอนง่าย ได้เงินเร็ว</h3>
+            <p>เริ่มต้นเพียงติดต่อทีมงานพร้อมรายละเอียดทรัพย์ที่ต้องการขายฝาก เราจะประเมินมูลค่าและแจ้งวงเงินที่อนุมัติได้อย่างรวดเร็ว เมื่อตกลงเงื่อนไขเรียบร้อย ก็นัดหมายจดทะเบียนที่สำนักงานที่ดิน และรับเงินก้อนได้ทันทีในวันโอน ไม่ต้องรอนาน ไม่ต้องผ่านขั้นตอนยุ่งยากเหมือนการขอสินเชื่อทั่วไป</p>
+
+            <h3>สรุป</h3>
+            <p>หากคุณกำลังมองหาทางออกทางการเงินที่ได้เงินเร็ว ปลอดภัย และยังมีสิทธิ์ไถ่ทรัพย์คืน การขายฝากบ้าน ที่ดิน คอนโด หรืออาคารพาณิชย์กับทีมงานมืออาชีพของเราคือคำตอบ เราพร้อมดูแลคุณด้วยความซื่อสัตย์ โปร่งใส และเป็นธรรมตามกฎหมายทุกขั้นตอน ติดต่อเราวันนี้ เพื่อเปลี่ยนทรัพย์สินของคุณให้เป็นเงินทุนได้อย่างมั่นใจและปลอดภัย</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-container">
+            
+            <!-- Section 1: Logo -->
+            <div class="footer-section">
+                <h3>CH</h3>
+                <p>CHIANG MAI HOME</p>
+                <p style="font-size: 0.8em; margin-top: 0.5rem;">บริการอสังหาริมทรัพย์ครบวงจร</p>
+            </div>
+
+            <!-- Section 2: Contact -->
+            <div class="footer-section">
+                <h3>ติดต่อ</h3>
+                <a href="tel:0647929626">โทรศัพท์: 064-7929626</a>
+                <p>เชียงใหม่ ประเทศไทย</p>
+            </div>
+
+            <!-- Section 3: LINE QR -->
+            <div class="footer-section">
+                <h3>LINE</h3>
+                <img src="https://files.catbox.moe/nqyqmc.jpeg" alt="LINE QR" style="width: 120px; height: 120px; border-radius: 6px; margin-top: 1rem;">
+            </div>
+
+            <!-- Section 4: WhatsApp QR -->
+            <div class="footer-section">
+                <h3>WhatsApp</h3>
+                <img src="https://files.catbox.moe/meep26.png" alt="WhatsApp QR" style="width: 120px; height: 120px; border-radius: 6px; margin-top: 1rem;">
+            </div>
+
+            <!-- Section 5: Social Media -->
+            <div class="footer-section">
+                <h3>Social Media</h3>
+                <p>Facebook: Chiangmai Home</p>
+                <p>TikTok: Chiangmai Home</p>
+            </div>
+
+        </div>
+
+        <!-- Bottom -->
+        <div class="footer-bottom">
+            <p>© 2024 Chiang Mai Home Co., Ltd. ทุกสิทธิ์สงวน</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateInterest() {
+            const loanAmount = parseFloat(document.getElementById('loanAmount').value) || 0;
+            const interestRate = parseFloat(document.getElementById('interestRate').value) || 0;
+            const duration = parseFloat(document.getElementById('duration').value) || 0;
+            const timePeriod = document.getElementById('timePeriod').value;
+
+            // Convert to months
+            const months = timePeriod === 'year' ? duration * 12 : duration;
+
+            // Calculate monthly interest
+            const monthlyRate = interestRate / 100 / 12;
+            const interest = loanAmount * monthlyRate * months;
+            const total = loanAmount + interest;
+
+            // Format currency
+            const formatter = new Intl.NumberFormat('th-TH', { style: 'currency', currency: 'THB', minimumFractionDigits: 0 });
+
+            document.getElementById('principalDisplay').textContent = formatter.format(loanAmount);
+            document.getElementById('interestDisplay').textContent = formatter.format(interest);
+            document.getElementById('totalDisplay').textContent = formatter.format(total);
+        }
+
+        // Initial calculation
+        calculateInterest();
+    </script>
+</body>
+</html>
